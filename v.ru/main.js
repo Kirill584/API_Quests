@@ -14,6 +14,7 @@ async function get_quests(){
                     <p class="card-text">Цена задания: ${quest.cost}</p>
                     <input type="text" class="form-control"">
                     <a href="#" class="card-link" onclick="quest_not_done(${quest.id})">Отправить ответ</a>
+                    <a href="#" class="card-link" onclick="delete_quest(${quest.id})">Удалить</a>
                 </div>
             </div>
         `
@@ -150,5 +151,17 @@ async function quest_not_done(id_q){
 
     const data = await res.json();
 }
+
+async function delete_quest(id_q){
+    const res = await fetch("http://api.vk.ru/quest/"+id_q, {
+        method: "DELETE"
+    })
+
+    const data = await res.json();
+
+    if(data.status === true)
+        get_quests();
+}
+
 get_quests();
 get_users();

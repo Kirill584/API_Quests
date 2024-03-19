@@ -19,7 +19,7 @@ function get_user_info($connect, $id){
         http_response_code(404);
         $res = [
             "status"=> false,
-            "message"=> "User not found"
+            "message"=> "Пользователь не найден"
         ];
         echo json_encode($res);
     }
@@ -75,7 +75,7 @@ function get_quest($connect, $id){
         http_response_code(404);
         $res = [
             "status"=> false,
-            "message"=> "Quest not found"
+            "message"=> "Задача не найдена"
         ];
         echo json_encode($res);
     }
@@ -143,4 +143,18 @@ function choose_user(){
     ];
 
     echo json_encode($res);
+}
+
+function delete_quest($connect, $id_q){
+    mysqli_query($connect, "DELETE FROM Quests WHERE `Quests`.`id` = $id_q");
+
+    http_response_code(200);
+
+    $res = [
+        "status"=> true,
+        "message"=> "Задача удалена"
+        ];
+
+    echo json_encode($res);
+
 }

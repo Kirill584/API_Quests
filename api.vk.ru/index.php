@@ -62,5 +62,8 @@ switch ($method) {
             choose_user();
         }
         break;
+    case 'DELETE':
+        delete_quest($connect, $id);
+        break;
 }
 ?>
